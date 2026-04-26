@@ -339,9 +339,34 @@ function Hero() {
   return (
     <section
       id="top"
-      className="relative bg-off overflow-hidden grid-paper border-b-2 border-ink"
+      className="relative bg-off overflow-hidden border-b-2 border-ink"
     >
-      <div className="max-w-[1400px] mx-auto px-5 lg:px-10 py-12 lg:py-16">
+      {/* Video background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+      >
+        <source src="/hero.mp4" type="video/mp4" />
+      </video>
+
+      {/* Left-faded white overlay over the video */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to right, rgba(251,252,251,1) 0%, rgba(251,252,251,0.96) 50%, rgba(251,252,251,0.7) 65%, rgba(251,252,251,0.25) 85%, rgba(251,252,251,0) 100%)",
+        }}
+      ></div>
+
+      {/* Subtle grid paper texture on top of the gradient */}
+      <div className="absolute inset-0 grid-paper opacity-30 pointer-events-none"></div>
+
+      <div className="relative max-w-[1400px] mx-auto px-5 lg:px-10 py-12 lg:py-16">
         <div className="grid grid-cols-12 gap-6 lg:gap-10 items-stretch">
           {/* LEFT — text */}
           <div className="col-span-12 lg:col-span-7 flex flex-col justify-center">
@@ -421,10 +446,8 @@ function Hero() {
             </div>
           </div>
 
-          {/* RIGHT — brick panel */}
+          {/* RIGHT — accents floating over the video */}
           <div className="col-span-12 lg:col-span-5 relative min-h-[440px] sm:min-h-[520px] lg:min-h-[640px] animate-scale-in">
-            <div className="absolute inset-0 brick-bg border-4 border-ink animate-drift"></div>
-
             {/* Hazard tape angled stripe */}
             <div className="absolute -top-4 -right-4 w-40 h-12 hazard-stripes border-2 border-ink rotate-[14deg] shadow-2xl animate-pulse-stripe"></div>
 
@@ -466,7 +489,7 @@ function Hero() {
       </div>
 
       {/* Service marquee */}
-      <div className="bg-ink text-off border-t-2 border-ink overflow-hidden">
+      <div className="relative bg-ink text-off border-t-2 border-ink overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap font-display text-2xl sm:text-3xl uppercase py-4 sm:py-5">
           {Array(2)
             .fill(0)

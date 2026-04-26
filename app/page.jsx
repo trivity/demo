@@ -134,7 +134,7 @@ const SERVICES = [
       "Shed, patio and outbuilding take-downs",
       "Site clean-up and waste removal",
     ],
-    img: "https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=1400&q=85&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1677588508537-5106322c2d40?w=1400&q=85&auto=format&fit=crop",
     tag: "RESIDENTIAL · COMMERCIAL",
   },
   {
@@ -149,7 +149,7 @@ const SERVICES = [
       "Clearance inspections and certificates",
       "Built around current WA safety requirements",
     ],
-    img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1400&q=85&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1633759593085-1eaeb724fc88?w=1400&q=85&auto=format&fit=crop",
     tag: "LICENSED · COMPLIANT",
   },
 ];

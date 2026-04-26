@@ -1,11 +1,10 @@
 import "./globals.css";
 
 export const metadata = {
-  metadataBase: new URL("https://premierdemolition.com.au"),
-  title:
-    "Premier Demolition — Demolition & Asbestos Removal | South West WA",
+  metadataBase: new URL("https://demo-phi-one-44.vercel.app"),
+  title: "Premier Demolition | Asbestos Removal & Demo — South West WA",
   description:
-    "Fully licensed demolition, asbestos removal and site preparation across the South West of Western Australia. Family-owned, Brunswick Junction based, 25+ years on the tools. Lic. WR 2489. Free quotes — call 0439 510 783.",
+    "Fully licensed demolition & asbestos removal across the South West of WA. Family-owned, 25+ years on the tools. Lic. WR 2489. Free quotes — call 0439 510 783.",
   keywords: [
     "demolition South West WA",
     "asbestos removal Bunbury",
@@ -16,12 +15,38 @@ export const metadata = {
     "internal strip out",
     "site clean up WA",
   ],
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "Premier Demolition — South West WA",
+    title: "Premier Demolition — Asbestos Removal & Demolition · South West WA",
     description:
-      "Fully licensed demolition & asbestos removal across the South West of Western Australia. 25+ years experience. Lic. WR 2489.",
+      "Fully licensed demolition & asbestos removal across the South West of WA. Family-owned, 25+ years on the tools. Lic. WR 2489.",
+    url: "/",
+    siteName: "Premier Demolition",
     type: "website",
     locale: "en_AU",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Premier Demolition — South West WA",
+    description:
+      "Fully licensed demolition & asbestos removal across the South West of WA. 25+ years on the tools. Lic. WR 2489.",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+    ],
   },
 };
 

@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
+const SITE = "https://demo-phi-one-44.vercel.app";
+
 /* ------------------------------------------------------------------ */
 /*  DATA                                                               */
 /* ------------------------------------------------------------------ */
@@ -400,8 +402,15 @@ function Hero() {
               </span>
             </h1>
 
+            <h2
+              className="mt-6 font-display text-xl sm:text-2xl lg:text-3xl text-brand-deep uppercase tracking-wide leading-tight animate-rise-sm"
+              style={{ animationDelay: "440ms" }}
+            >
+              Licensed Demolition &amp; Asbestos Removal Contractor — South West WA
+            </h2>
+
             <p
-              className="mt-8 max-w-xl text-charcoal text-base lg:text-lg leading-relaxed animate-rise-sm"
+              className="mt-6 max-w-xl text-charcoal text-base lg:text-lg leading-relaxed animate-rise-sm"
               style={{ animationDelay: "520ms" }}
             >
               Fully licensed demolition, asbestos removal and site preparation
@@ -603,6 +612,8 @@ function Services() {
                     src={s.img}
                     alt={`${s.title} project`}
                     loading="lazy"
+                    width={1400}
+                    height={1750}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/15 to-transparent pointer-events-none"></div>
@@ -830,6 +841,8 @@ function Showcase() {
                   src={it.src}
                   alt={it.label}
                   loading="lazy"
+                  width={1200}
+                  height={1500}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent"></div>
@@ -989,6 +1002,8 @@ function About() {
                   src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1100&q=85&auto=format&fit=crop"
                   alt="Premier Demolition team on site"
                   loading="lazy"
+                  width={1100}
+                  height={1375}
                   className="w-full h-full object-cover grayscale"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-ink/40 to-transparent"></div>
@@ -1314,11 +1329,11 @@ function Footer() {
                 <div className="text-off">Brunswick Junction, WA</div>
               </div>
               <a
-                href="https://www.facebook.com/"
+                href="https://www.facebook.com/search/top/?q=Premier%20Demolition%20Brunswick%20Junction"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 text-off/80 hover:text-brand mt-2 transition-colors"
-                aria-label="Facebook"
+                aria-label="Premier Demolition on Facebook"
               >
                 <span className="w-9 h-9 border-2 border-off/40 flex items-center justify-center font-display text-lg">
                   f
@@ -1353,10 +1368,142 @@ function Footer() {
 /*  PAGE                                                               */
 /* ------------------------------------------------------------------ */
 
+function buildSchema() {
+  const towns = REGIONS.flatMap((r) => r.towns);
+  const uniqueTowns = Array.from(new Set(towns));
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "HomeAndConstructionBusiness",
+        "@id": `${SITE}/#business`,
+        name: "Premier Demolition",
+        alternateName: "Premier Demolition WA",
+        description:
+          "Family-owned demolition and asbestos removal contractor based in Brunswick Junction, servicing the South West of Western Australia. Fully licensed for asbestos removal and demolition. 25+ years of experience.",
+        url: `${SITE}/`,
+        logo: `${SITE}/opengraph-image`,
+        image: `${SITE}/opengraph-image`,
+        telephone: "+61439510783",
+        email: "premierdemolition2@hotmail.com",
+        priceRange: "$$",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Brunswick Junction",
+          addressRegion: "WA",
+          addressCountry: "AU",
+        },
+        areaServed: uniqueTowns.map((t) => ({
+          "@type": "City",
+          name: t,
+          containedInPlace: {
+            "@type": "AdministrativeArea",
+            name: "South West, Western Australia",
+          },
+        })),
+        openingHoursSpecification: [
+          {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday",
+            ],
+            opens: "07:00",
+            closes: "18:00",
+          },
+        ],
+        identifier: {
+          "@type": "PropertyValue",
+          propertyID: "Licence",
+          value: "WR 2489",
+        },
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Demolition & Asbestos Services",
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "House Demolition",
+                description:
+                  "Full and partial demolition for residential and commercial sites across the South West of WA.",
+                serviceType: "Demolition",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Asbestos Removal",
+                description:
+                  "Licensed asbestos removal for roofs, walls, eaves and fencing — with WorkSafe notifications and clearance certificates.",
+                serviceType: "Asbestos Removal",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Internal Strip-Outs",
+                description:
+                  "Internal strip-outs for bathrooms, kitchens and laundries; tile, concrete and wall removal.",
+                serviceType: "Strip-Out",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Site Clean-Up & Preparation",
+                description:
+                  "Site clean-up, debris removal and ground levelling for the next stage of work.",
+                serviceType: "Site Preparation",
+              },
+            },
+          ],
+        },
+        sameAs: [
+          "https://www.facebook.com/search/top/?q=Premier%20Demolition%20Brunswick%20Junction",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${SITE}/#website`,
+        url: `${SITE}/`,
+        name: "Premier Demolition",
+        publisher: { "@id": `${SITE}/#business` },
+        inLanguage: "en-AU",
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${SITE}/#faq`,
+        mainEntity: FAQS.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: f.a,
+          },
+        })),
+      },
+    ],
+  };
+}
+
 export default function Page() {
   useReveal();
   return (
     <main className="bg-off text-ink">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema()) }}
+      />
       <Header />
       <Hero />
       <Trust />

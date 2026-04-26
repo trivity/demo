@@ -149,7 +149,7 @@ const SERVICES = [
       "Clearance inspections and certificates",
       "Built around current WA safety requirements",
     ],
-    img: "https://images.unsplash.com/photo-1631524522264-ea0e6b446b80?w=1400&q=85&auto=format&fit=crop",
+    img: "https://images.unsplash.com/photo-1586947292720-16654d57e52e?w=1400&q=85&auto=format&fit=crop",
     tag: "LICENSED · COMPLIANT",
   },
 ];

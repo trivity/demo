@@ -7,3 +7,13 @@ out
 .playwright-mcp
 .claude
 
+# Stray screenshots that aren't part of the site
+ai-provider-instructions.png
+chat-*.png
+login-*.png
+nav-on-chat.png
+onboarding-step.png
+refresh-now-rendered.png
+settings-*.png
+sidebar-with-actions.png
+

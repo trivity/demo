@@ -154,6 +154,66 @@ const SERVICES = [
     img: "https://images.unsplash.com/photo-1586947292720-16654d57e52e?w=1400&q=85&auto=format&fit=crop",
     tag: "LICENSED · COMPLIANT",
   },
+  {
+    n: "03",
+    title: "INTERNAL STRIP-OUTS",
+    sub: "Take it back to the studs.",
+    desc: "Internal strip-outs for bathrooms, kitchens, laundries — and full-house gut-outs. Walls, fixtures, fittings and finishes — out clean and ready for the next trade.",
+    bullets: [
+      "Bathroom, kitchen and laundry strip-outs",
+      "Wall sheeting and partition removal",
+      "Fixtures, fittings and cabinetry removal",
+      "Sub-floor and ceiling lining removal",
+      "All waste removed and disposed of",
+    ],
+    img: "https://images.unsplash.com/photo-1768321902047-2296fd495fa4?w=1400&q=85&auto=format&fit=crop",
+    tag: "RENOVATION · REBUILD",
+  },
+  {
+    n: "04",
+    title: "TILE & CONCRETE",
+    sub: "Hard surfaces. Done properly.",
+    desc: "Tile, concrete and brick removal for floors, walls, slabs and driveways. Heavy-duty work done safely, with the right tools and dust control.",
+    bullets: [
+      "Floor and wall tile removal",
+      "Concrete slab and footing breakouts",
+      "Driveway and pathway removal",
+      "Brick and masonry demolition",
+      "All spoil removed off-site",
+    ],
+    img: "https://images.unsplash.com/photo-1665631153909-ae7a1b6c137f?w=1400&q=85&auto=format&fit=crop",
+    tag: "RESIDENTIAL · COMMERCIAL",
+  },
+  {
+    n: "05",
+    title: "SHED & PATIO",
+    sub: "Outbuildings down. Yard back.",
+    desc: "Removal of sheds, patios, carports, pergolas and other outbuildings — including any old asbestos roof or wall sheeting where licensed removal is required.",
+    bullets: [
+      "Garden sheds and workshops",
+      "Patios, pergolas and carports",
+      "Old fencing and outbuilding removal",
+      "Asbestos roof and wall sheeting (where licensed)",
+      "Site left swept and ready",
+    ],
+    img: "https://images.unsplash.com/photo-1760634533837-b9022d12dc47?w=1400&q=85&auto=format&fit=crop",
+    tag: "RESIDENTIAL",
+  },
+  {
+    n: "06",
+    title: "SITE CLEAN-UP",
+    sub: "Done means done.",
+    desc: "Post-demolition and post-renovation clean-ups. Debris removed, materials sorted where possible, the site left level, swept and ready for the next stage of work.",
+    bullets: [
+      "Post-demolition site clearance",
+      "Renovation rubbish removal",
+      "Materials sorted for recycling where possible",
+      "Site levelled and graded if required",
+      "Final sweep and walkthrough",
+    ],
+    img: "https://images.unsplash.com/photo-1769053144989-5a8804b98917?w=1400&q=85&auto=format&fit=crop",
+    tag: "POST-WORKS",
+  },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -1425,48 +1485,21 @@ function buildSchema() {
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Demolition & Asbestos Services",
-          itemListElement: [
-            {
+          itemListElement: SERVICES.map((s) => {
+            const titleCased = s.title
+              .toLowerCase()
+              .replace(/\b\w/g, (c) => c.toUpperCase());
+            return {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "House Demolition",
-                description:
-                  "Full and partial demolition for residential and commercial sites across the South West of WA.",
-                serviceType: "Demolition",
+                name: titleCased,
+                description: s.desc,
+                serviceType: titleCased,
+                provider: { "@id": `${SITE}/#business` },
               },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "Asbestos Removal",
-                description:
-                  "Licensed asbestos removal for roofs, walls, eaves and fencing — with WorkSafe notifications and clearance certificates.",
-                serviceType: "Asbestos Removal",
-              },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "Internal Strip-Outs",
-                description:
-                  "Internal strip-outs for bathrooms, kitchens and laundries; tile, concrete and wall removal.",
-                serviceType: "Strip-Out",
-              },
-            },
-            {
-              "@type": "Offer",
-              itemOffered: {
-                "@type": "Service",
-                name: "Site Clean-Up & Preparation",
-                description:
-                  "Site clean-up, debris removal and ground levelling for the next stage of work.",
-                serviceType: "Site Preparation",
-              },
-            },
-          ],
+            };
+          }),
         },
         sameAs: [
           "https://www.facebook.com/search/top/?q=Premier%20Demolition%20Brunswick%20Junction",

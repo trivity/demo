@@ -4,7 +4,7 @@ export const metadata = {
   metadataBase: new URL("https://demo-phi-one-44.vercel.app"),
   title: "Premier Demolition | Asbestos Removal & Demo — South West WA",
   description:
-    "Fully licensed demolition & asbestos removal across the South West of WA. Family-owned, 25+ years on the tools. Lic. WR 2489. Free quotes — call 0439 510 783.",
+    "Fully licensed demolition & asbestos removal across the South West of WA. Family-owned, 25+ years on the tools. Lic. WR 2489. Free quotes — call (439) 510-783.",
   keywords: [
     "demolition South West WA",
     "asbestos removal Bunbury",

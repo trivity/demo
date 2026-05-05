@@ -99,7 +99,7 @@ const PROCESS = [
 const FAQS = [
   {
     q: "How do I enquire?",
-    a: "Click the Free Quote button on the website or call us directly on 0439 510 783 to arrange a meeting.",
+    a: "Click the Free Quote button on the website or call us directly on (439) 510-783 to arrange a meeting.",
   },
   {
     q: "Are you licensed house demolition contractors in WA?",
@@ -334,7 +334,7 @@ function Header() {
               href="tel:0439510783"
               className="hidden md:inline-block font-mono text-sm tracking-tight text-ink hover:text-brand-deep"
             >
-              0439 510 783
+              (439) 510-783
             </a>
             <a
               href="#quote"
@@ -492,7 +492,7 @@ function Hero() {
                 href="tel:0439510783"
                 className="bg-transparent text-ink font-mono font-bold tracking-wider2 uppercase text-sm px-7 py-4 border-2 border-ink hover:bg-ink hover:text-off transition-colors text-center"
               >
-                Call 0439 510 783
+                Call (439) 510-783
               </a>
             </div>
 
@@ -660,7 +660,8 @@ function Services() {
           {SERVICES.map((s, i) => (
             <article
               key={s.n}
-              className="reveal grid grid-cols-12 gap-6 lg:gap-12 items-center"
+              id={`service-${s.n}`}
+              className="reveal grid grid-cols-12 gap-6 lg:gap-12 items-center scroll-mt-32"
             >
               <div
                 className={`col-span-12 lg:col-span-6 ${
@@ -940,6 +941,20 @@ function Showcase() {
 
 function Area() {
   const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const updateFromHash = () => {
+      const m = window.location.hash.match(/^#region-(\d+)$/);
+      if (m) {
+        const idx = REGIONS.findIndex((r) => r.code === m[1]);
+        if (idx >= 0) setActive(idx);
+      }
+    };
+    updateFromHash();
+    window.addEventListener("hashchange", updateFromHash);
+    return () => window.removeEventListener("hashchange", updateFromHash);
+  }, []);
+
   return (
     <section
       id="area"
@@ -967,9 +982,10 @@ function Area() {
             {REGIONS.map((r, i) => (
               <button
                 key={r.code}
+                id={`region-${r.code}`}
                 onMouseEnter={() => setActive(i)}
                 onClick={() => setActive(i)}
-                className={`w-full text-left p-5 lg:p-7 border-b-2 border-ink/15 last:border-b-0 transition-colors duration-300 ${
+                className={`w-full text-left p-5 lg:p-7 border-b-2 border-ink/15 last:border-b-0 transition-colors duration-300 scroll-mt-32 ${
                   active === i
                     ? "bg-ink text-off"
                     : "bg-cream text-ink hover:bg-off"
@@ -1036,7 +1052,7 @@ function Area() {
                 href="tel:0439510783"
                 className="font-mono text-sm font-bold text-ink hover:text-brand-deep border-b-2 border-ink hover:border-brand-deep pb-0.5 transition-colors"
               >
-                0439 510 783 →
+                (439) 510-783 →
               </a>
             </div>
           </div>
@@ -1174,7 +1190,7 @@ function FAQ() {
               href="tel:0439510783"
               className="mt-7 inline-block font-mono text-base font-bold text-ink border-b-2 border-ink pb-1 hover:text-brand-deep hover:border-brand-deep transition-colors"
             >
-              0439 510 783 →
+              (439) 510-783 →
             </a>
           </div>
 
@@ -1265,7 +1281,7 @@ function CTA() {
                 CALL US
               </div>
               <div className="font-display text-3xl uppercase">
-                0439 510 783
+                (439) 510-783
               </div>
               <div className="mt-3 font-mono text-[11px] tracking-wider2 text-ink/70 group-hover:text-ink">
                 7 DAYS · FREE QUOTES →
@@ -1335,12 +1351,23 @@ function Footer() {
               SERVICES
             </div>
             <ul className="space-y-2 text-off/80 text-sm">
-              <li>House Demolition</li>
-              <li>Asbestos Removal</li>
-              <li>Internal Strip-Outs</li>
-              <li>Tile & Concrete</li>
-              <li>Shed & Patio</li>
-              <li>Site Clean-Up</li>
+              {[
+                ["House Demolition", "service-01"],
+                ["Asbestos Removal", "service-02"],
+                ["Internal Strip-Outs", "service-03"],
+                ["Tile & Concrete", "service-04"],
+                ["Shed & Patio", "service-05"],
+                ["Site Clean-Up", "service-06"],
+              ].map(([label, anchor]) => (
+                <li key={anchor}>
+                  <a
+                    href={`#${anchor}`}
+                    className="hover:text-brand transition-colors"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -1349,11 +1376,22 @@ function Footer() {
               SERVICE AREA
             </div>
             <ul className="space-y-2 text-off/80 text-sm">
-              <li>Bunbury</li>
-              <li>Harvey · Brunswick</li>
-              <li>Busselton · Dunsborough</li>
-              <li>Margaret River</li>
-              <li>Southern Inland</li>
+              {[
+                ["Bunbury", "region-01"],
+                ["Harvey · Brunswick", "region-02"],
+                ["Busselton · Dunsborough", "region-03"],
+                ["Margaret River", "region-04"],
+                ["Southern Inland", "region-05"],
+              ].map(([label, anchor]) => (
+                <li key={anchor}>
+                  <a
+                    href={`#${anchor}`}
+                    className="hover:text-brand transition-colors"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -1369,7 +1407,7 @@ function Footer() {
                 <div className="text-off/40 text-[10px] tracking-wider3 mb-1 font-mono">
                   PHONE
                 </div>
-                <div className="font-mono">0439 510 783</div>
+                <div className="font-mono">(439) 510-783</div>
               </a>
               <a
                 href="mailto:premierdemolition2@hotmail.com"

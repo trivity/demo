@@ -30,7 +30,7 @@ npm start
 - The **green brick pattern** from your flyer is preserved as a recurring brand motif (hero panel, logo mark, footer).
 - All copy, FAQ answers, regions, and process steps come straight from your brief.
 - Photos use Unsplash placeholders — swap them for your real before/after photos. Any `<img src="https://images.unsplash.com/...">` can be replaced with your media-storage URLs.
-- License number **WR 2489**, phone **0439 510 783**, and email **premierdemolition2@hotmail.com** are pulled from your flyer.
+- License number **WR 2489**, phone **(439) 510-783**, and email **premierdemolition2@hotmail.com** are pulled from your flyer.
 - Tailwind is loaded via the Play CDN as requested. For long-term production, consider switching to compiled Tailwind for smaller payload + better performance.
 
 ## Sections
